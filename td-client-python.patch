@@ -1,0 +1,18 @@
+diff --git a/tdclient/api.py b/tdclient/api.py
+index 56ac977..300ddd5 100644
+--- a/tdclient/api.py
++++ b/tdclient/api.py
+@@ -264,11 +264,11 @@ class API(AccessControlAPI, AccountAPI, BulkImportAPI, ConnectorAPI, DatabaseAPI
+             if fileno_supported:
+                 stream = bytes_or_stream
+             else:
+-                stream = array(str("b"), bytes_or_stream.read())
++                stream = bytes(bytes_or_stream.read())
+ 
+         else:
+             # send request body as an `array.array` since `httplib` requires the request body to be a unicode string
+-            stream = array(str("b"), bytes_or_stream)
++            stream = bytes(bytes_or_stream)
+ 
+         response = None
+         try:
